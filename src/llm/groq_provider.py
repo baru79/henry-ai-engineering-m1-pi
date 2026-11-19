@@ -5,11 +5,14 @@ from src.llm.base import LLMProvider, LLMProviderError
 class GroqProvider(LLMProvider):
     """
     Adapter para Groq Cloud (ultra rápido y gratuito).
-    Modelos recomendados: 'llama-3.1-8b-instant', 'llama-3.3-70b-versatile'.
+    Modelos oficiales soportados:
+    - 'openai/gpt-oss-120b'
+    - 'openai/gpt-oss-20b'
+    - 'openai/gpt-oss-safeguard-20b'
     """
 
     def get_default_model(self) -> str:
-        return "llama-3.3-70b-versatile"
+        return "openai/gpt-oss-120b"
 
     @property
     def provider_name(self) -> str:

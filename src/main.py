@@ -202,7 +202,7 @@ def main():
         "--model", "-m",
         type=str,
         default=None,
-        help="Modelo específico a utilizar (ej: 'llama-3.1-8b-instant', 'gemini-1.5-flash')."
+        help="Modelo específico a utilizar (ej: 'openai/gpt-oss-120b', 'gemini-1.5-flash')."
     )
     parser.add_argument(
         "--prompt-version", "-v",

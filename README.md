@@ -108,7 +108,7 @@ PI/
     │   ├── __init__.py
     │   ├── base.py           # Abstracción base LLMProvider (ABC) y LLMResponse unificado
     │   ├── factory.py        # Patrón Factory para instanciación desacoplada
-    │   ├── groq_provider.py  # Adaptador Groq Cloud (llama-3.1-8b-instant)
+    │   ├── groq_provider.py  # Adaptador Groq Cloud (openai/gpt-oss-120b)
     │   ├── gemini_provider.py# Adaptador Google AI Studio (gemini-1.5-flash)
     │   └── openrouter_provider.py # Adaptador OpenRouter (meta-llama-3.3-70b-instruct:free)
     └── observability/
@@ -147,7 +147,7 @@ Editá `.env` con al menos una API key gratuita:
 Configuración por defecto recomendada en `.env`:
 ```env
 LLM_PROVIDER=groq
-LLM_MODEL=llama-3.1-8b-instant
+LLM_MODEL=openai/gpt-oss-120b
 PROMPT_VERSION=v2_few_shot
 CACHE_ENABLED=true
 METRICS_FILE_PATH=data/metrics.jsonl
@@ -178,7 +178,7 @@ python src/main.py --query "Hola, me cobraron dos veces la suscripción de este 
 ```
 **Resumen en `stderr`:**
 ```text
-[Métricas] Proveedor: groq | Modelo: llama-3.1-8b-instant | Latencia: 0.384s | Tokens: 457 | Costo est.: $0.000026 USD | Caché: False
+[Métricas] Proveedor: groq | Modelo: openai/gpt-oss-120b | Latencia: 0.384s | Tokens: 457 | Costo est.: $0.000078 USD | Caché: False
 ```
 
 ### Ejemplo 2: Desambiguación técnica (Mercado Pago / Pagos)
@@ -328,12 +328,12 @@ Cada llamada al servicio se registra atómicamente en `data/metrics.jsonl` (form
   "timestamp": "2026-11-18T22:10:15.123456+00:00",
   "query": "Hola, me cobraron dos veces la suscripción...",
   "provider": "groq",
-  "model": "llama-3.1-8b-instant",
+  "model": "openai/gpt-oss-120b",
   "prompt_tokens": 345,
   "completion_tokens": 112,
   "total_tokens": 457,
   "latency_seconds": 0.3842,
-  "cost_usd": 0.0000262,
+  "cost_usd": 0.0000780,
   "cached": false,
   "status": "success"
 }
@@ -343,7 +343,8 @@ Cada llamada al servicio se registra atómicamente en `data/metrics.jsonl` (form
 En `src/observability/pricing.py` se utilizan las tarifas oficiales por millón de tokens:
 $$\text{Costo (USD)} = \frac{(\text{prompt\_tokens} \times \text{tarifa\_input}) + (\text{completion\_tokens} \times \text{tarifa\_output})}{1.000.000}$$
 *Tarifas de referencia:*
-* **Groq Llama 3.1 8B:** \$0.05 / 1M input \| \$0.08 / 1M output
+* **Groq OpenAI GPT-OSS 120B:** \$0.15 / 1M input \| \$0.60 / 1M output
+* **Groq OpenAI GPT-OSS 20B:** \$0.05 / 1M input \| \$0.15 / 1M output
 * **Google Gemini 1.5 Flash:** \$0.075 / 1M input \| \$0.30 / 1M output
 * **Caché Hit:** \$0.0000000 USD (0 tokens consumidos)
 
