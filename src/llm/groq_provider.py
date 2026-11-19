@@ -9,7 +9,7 @@ class GroqProvider(LLMProvider):
     """
 
     def get_default_model(self) -> str:
-        return "llama-3.1-8b-instant"
+        return "llama-3.3-70b-versatile"
 
     @property
     def provider_name(self) -> str:
