@@ -14,6 +14,7 @@ venv/
 # Data local y logs de métricas temporales (opcional, data/metrics.jsonl se versiona si tiene registros de muestra)
 *.log
 .DS_Store
+data/cache.json
 
 # IDEs
 .vscode/
