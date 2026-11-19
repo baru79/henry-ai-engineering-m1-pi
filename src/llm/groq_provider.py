@@ -1,0 +1,42 @@
+from typing import Optional
+from src.llm.base import LLMProvider, LLMProviderError
+
+
+class GroqProvider(LLMProvider):
+    """
+    Adapter para Groq Cloud (ultra rápido y gratuito).
+    Modelos recomendados: 'llama-3.1-8b-instant', 'llama-3.3-70b-versatile'.
+    """
+
+    def get_default_model(self) -> str:
+        return "llama-3.1-8b-instant"
+
+    @property
+    def provider_name(self) -> str:
+        return "groq"
+
+    def _call_api(self, system_prompt: str, user_prompt: str) -> tuple[str, int, int]:
+        try:
+            from groq import Groq
+        except ImportError:
+            raise LLMProviderError(
+                "La librería 'groq' no está instalada. Ejecutá: pip install groq"
+            )
+
+        client = Groq(api_key=self.api_key)
+
+        response = client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            temperature=0.0,
+            response_format={"type": "json_object"}
+        )
+
+        content = response.choices[0].message.content or "{}"
+        p_tokens = response.usage.prompt_tokens if response.usage else 0
+        c_tokens = response.usage.completion_tokens if response.usage else 0
+
+        return content, p_tokens, c_tokens
