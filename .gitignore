@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Environment variables (NUNCA commitear credenciales)
+.env
+
+# Data local y logs de métricas temporales (opcional, data/metrics.jsonl se versiona si tiene registros de muestra)
+*.log
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/

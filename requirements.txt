@@ -1,0 +1,9 @@
+# Dependencias principales del proyecto
+pydantic>=2.6.0
+python-dotenv>=1.0.1
+pyyaml>=6.0.1
+
+# Proveedores de LLM gratuitos
+groq>=0.9.0
+google-genai>=0.1.1
+openai>=1.35.0  # Usado para OpenRouter y como interfaz estándar compatible
