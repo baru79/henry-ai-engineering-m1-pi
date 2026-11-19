@@ -5,14 +5,14 @@ from src.llm.base import LLMProvider, LLMProviderError
 class OpenRouterProvider(LLMProvider):
     """
     Adapter para OpenRouter (acceso a modelos gratuitos Open Source vía API compatible con OpenAI).
-    Modelos recomendados con capa gratuita:
-    - 'meta-llama/llama-3.3-70b-instruct:free'
-    - 'google/gemini-2.0-flash-exp:free'
-    - 'meta-llama/llama-3.1-8b-instruct:free'
+    Modelos gratuitos activos recomendados:
+    - 'openrouter/free' (auto-router que balancea automáticamente entre modelos gratuitos disponibles)
+    - 'nvidia/nemotron-3.5-lightning:free'
+    - 'google/gemma-4-31b-it:free'
     """
 
     def get_default_model(self) -> str:
-        return "meta-llama/llama-3.3-70b-instruct:free"
+        return "openrouter/free"
 
     @property
     def provider_name(self) -> str:

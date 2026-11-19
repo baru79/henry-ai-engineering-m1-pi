@@ -13,9 +13,9 @@ MODEL_PRICING_PER_MILLION: Dict[str, Tuple[float, float]] = {
     "gemini-2.0-flash": (0.10, 0.40),
 
     # OpenRouter Free / Open Source models
-    "meta-llama/llama-3.3-70b-instruct:free": (0.59, 0.79),
-    "meta-llama/llama-3.1-8b-instruct:free": (0.05, 0.08),
-    "google/gemini-2.0-flash-exp:free": (0.075, 0.30),
+    "openrouter/free": (0.10, 0.30),
+    "nvidia/nemotron-3.5-lightning:free": (0.10, 0.30),
+    "google/gemma-4-31b-it:free": (0.08, 0.25),
 
     # Tarifa de fallback genérica
     "default": (0.10, 0.30),
