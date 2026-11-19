@@ -42,6 +42,7 @@ class OpenRouterProvider(LLMProvider):
                 {"role": "user", "content": user_prompt}
             ],
             temperature=0.0,
+            max_tokens=600,
             response_format={"type": "json_object"}
         )
 
