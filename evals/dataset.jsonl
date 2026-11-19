@@ -1,0 +1,32 @@
+{"id": 1, "query": "Hola, me cobraron dos veces la suscripción de este mes, necesito que me reintegren uno de los cargos.", "expected_category": "billing", "notes": "Cobro duplicado estándar"}
+{"id": 2, "query": "no me llega la factura de agosto, la necesito para mi contador urgente", "expected_category": "billing", "notes": "Urgencia y falta de factura"}
+{"id": 3, "query": "Quiero cambiar la tarjeta de crédito con la que pago todos los meses porque se me venció.", "expected_category": "billing", "notes": "Actualización de medio de pago"}
+{"id": 4, "query": "Me llegó un débito automático con un importe mayor al contratado, ¿a qué se debe este ajuste?", "expected_category": "billing", "notes": "Disputa de monto facturado"}
+{"id": 5, "query": "Necesito dar de baja la suscripción antes de fin de mes para que no me renueven el ciclo.", "expected_category": "billing", "notes": "Cancelación de suscripción"}
+{"id": 6, "query": "Buen día, necesito que emitan la factura fiscal a nombre de mi nueva razón social.", "expected_category": "billing", "notes": "Cambio de datos de facturación fiscal"}
+{"id": 7, "query": "¿Dónde puedo descargar todos los comprobantes de pago del último trimestre?", "expected_category": "billing", "notes": "Descarga de historial de comprobantes"}
+{"id": 8, "query": "El sistema me dice que mi cuenta está suspendida por falta de pago pero ya transferí ayer.", "expected_category": "billing", "notes": "Acreditación de pago pendiente"}
+{"id": 9, "query": "El dashboard de reportes me tira error 500 desde ayer, no puedo generar el cierre de caja.", "expected_category": "technical", "notes": "Error 500 en módulo central"}
+{"id": 10, "query": "Se me cayó la integración con Mercado Pago, los pagos no se están sincronizando desde esta mañana.", "expected_category": "technical", "notes": "Falso amigo: menciona pagos pero es caída de integración técnica"}
+{"id": 11, "query": "La sincronización de facturación electrónica con AFIP me da timeout constante.", "expected_category": "technical", "notes": "Fallo técnico de conexión con web service externo"}
+{"id": 12, "query": "Cuando intento exportar el listado de clientes a Excel se queda la pantalla en blanco y no descarga.", "expected_category": "technical", "notes": "Fallo de exportación en UI"}
+{"id": 13, "query": "El sistema está extremadamente lento, tarda más de 20 segundos en cargar cada venta.", "expected_category": "technical", "notes": "Degradación de rendimiento y latencia"}
+{"id": 14, "query": "No me llegan los correos de notificación automática que envía Nubbix a mis clientes cuando emito un remito.", "expected_category": "technical", "notes": "Fallo en servidor SMTP / envío de correos"}
+{"id": 15, "query": "Desde la última actualización no puedo escanear códigos de barra en el punto de venta.", "expected_category": "technical", "notes": "Incompatibilidad de hardware / periféricos en POS"}
+{"id": 16, "query": "Error de base de datos al intentar guardar un nuevo producto: 'Deadlock detected'.", "expected_category": "technical", "notes": "Error explícito de base de datos"}
+{"id": 17, "query": "Quiero agregar un usuario nuevo a mi cuenta con permisos de solo lectura, ¿cómo lo hago?", "expected_category": "account", "notes": "Alta de usuario con rol específico"}
+{"id": 18, "query": "Necesito cambiar el email de administrador de la cuenta, el actual ya no existe en mi empresa.", "expected_category": "account", "notes": "Modificación de email maestro"}
+{"id": 19, "query": "El empleado que manejaba la caja fue desvinculado, necesito bloquear su acceso de inmediato.", "expected_category": "account", "notes": "Baja urgente de credenciales"}
+{"id": 20, "query": "¿Cómo configuro la autenticación en dos pasos (2FA) para todos los usuarios de mi sucursal?", "expected_category": "account", "notes": "Configuración de seguridad 2FA"}
+{"id": 21, "query": "No recuerdo mi contraseña y no me llega el email para restablecerla al correo registrado.", "expected_category": "account", "notes": "Recuperación de contraseña bloqueada"}
+{"id": 22, "query": "Llegué al límite de 5 usuarios que incluye mi plan, ¿dónde puedo comprar licencias adicionales?", "expected_category": "account", "notes": "Gestión de cupos de usuario"}
+{"id": 23, "query": "El enlace de invitación que le envié a mi contador expiró, ¿cómo se lo reenvío?", "expected_category": "account", "notes": "Reenvío de invitación de acceso"}
+{"id": 24, "query": "Quiero transferir la titularidad de la cuenta de Nubbix a otro socio de la empresa.", "expected_category": "account", "notes": "Transferencia de propiedad de cuenta"}
+{"id": 25, "query": "¿Tienen algún descuento para clientes que llevan más de 2 años con Nubbix?", "expected_category": "other", "notes": "Consulta comercial de fidelización / retención"}
+{"id": 26, "query": "hola buenas, quería saber si tienen planes para empresas más grandes, somos 80 empleados", "expected_category": "other", "notes": "Consulta comercial corporativa / Enterprise"}
+{"id": 27, "query": "¿Tienen planeado incorporar integración nativa con Shopify antes de fin de año?", "expected_category": "other", "notes": "Feature request / roadmap de producto"}
+{"id": 28, "query": "Hola, ¿ofrecen capacitaciones presenciales para el personal de nuestro depósito?", "expected_category": "other", "notes": "Servicios profesionales / formación"}
+{"id": 29, "query": "Quisiera coordinar una reunión de demostración para evaluar migrar todas nuestras sucursales a Nubbix.", "expected_category": "other", "notes": "Lead comercial para equipo de ventas"}
+{"id": 30, "query": "¿Nubbix tiene oficinas físicas en Santiago de Chile donde podamos acercarnos a hablar?", "expected_category": "other", "notes": "Información institucional"}
+{"id": 31, "query": "Buenos días, ¿tienen un programa de referidos o comisiones para contadores?", "expected_category": "other", "notes": "Programa de partners comerciales"}
+{"id": 32, "query": "Muchas gracias por la atención recibida en el ticket anterior, que tengan buena semana.", "expected_category": "other", "notes": "Agradecimiento / saludo sin incidente operativo"}
