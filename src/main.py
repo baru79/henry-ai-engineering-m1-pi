@@ -3,8 +3,14 @@ import json
 import re
 import sys
 import time
+from pathlib import Path
 from typing import Optional, Tuple
 from pydantic import ValidationError
+
+# Asegurar que la raíz del proyecto esté en sys.path para ejecuciones directas
+ROOT_DIR = Path(__file__).resolve().parent.parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
 
 from src.config import settings
 from src.models import TriageResponse, MetricRecord
