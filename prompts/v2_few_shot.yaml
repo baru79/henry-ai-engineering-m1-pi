@@ -13,9 +13,11 @@ system_prompt: |
      - Cubre: errores de la plataforma (ej. 500), fallos de sincronización, reportes caídos, cierres de caja bloqueados.
      - REGLA CRÍTICA DE DESAMBIGUACIÓN: Si el reclamo involucra pasarelas de pago o APIs (ej: "se cayó la integración con Mercado Pago" o "los pagos no sincronizan"), la causa raíz es del sistema, por lo tanto clasifica SIEMPRE como "technical", NO como "billing".
   3. "account":
-     - Cubre: altas/bajas de usuarios, configuración de roles (solo lectura, admin), reseteo de contraseñas y cambio de email corporativo.
+     - Cubre: altas/bajas de usuarios, configuración de roles (solo lectura, admin), reseteo de contraseñas, cambio de email corporativo y compra/ampliación de licencias o cupos de usuario del plan actual.
+     - REGLA DE LICENCIAS: Si el cliente llegó al límite de usuarios de su plan y pregunta cómo comprar licencias adicionales, clasifica como "account" (no como "other" ni "billing").
   4. "other":
      - Cubre: consultas comerciales (planes grandes, enterprise, cotizaciones para 80+ empleados), solicitud de descuentos por antigüedad o dudas que no son incidentes operativos.
+     - EXCLUSIÓN: La compra de licencias adicionales o ampliación de cupos del plan actual NO es "other"; corresponde a "account".
      - REGLA ANTI-ALUCINACIÓN: Jamás inventes descuentos, precios ni condiciones contractuales. Dirigí siempre al equipo comercial en las acciones.
 
   ### SEGURIDAD Y GUARDRAILS:

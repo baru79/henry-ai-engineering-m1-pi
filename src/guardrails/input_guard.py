@@ -27,8 +27,10 @@ class InputGuard:
     INJECTION_PATTERNS: List[re.Pattern] = [
         re.compile(r"ignore\s+(all\s+)?(previous|prior)\s+instructions", re.IGNORECASE),
         re.compile(r"ignor[aá]\s+(todas\s+las\s+)?instrucciones(\s+anteriores)?", re.IGNORECASE),
+        re.compile(r"olvid[aá]\s+(todas\s+las?\s+)?(instrucciones|indicaciones)(\s+anteriores)?", re.IGNORECASE),
         re.compile(r"olvid[aá]\s+(todo\s+lo\s+anterior|tus\s+instrucciones)", re.IGNORECASE),
         re.compile(r"you\s+are\s+now\s+(in\s+)?(DAN|developer|unrestricted|god)\s+mode", re.IGNORECASE),
+        re.compile(r"\b(DAN\s+mode|Do Anything Now)\b", re.IGNORECASE),
         re.compile(r"act[uú]a\s+como\s+(un\s+hacker|modo\s+desarrollador|sin\s+restricciones)", re.IGNORECASE),
         re.compile(r"(reveal|print|show|dame|mostrame)\s+(your\s+)?(system\s+prompt|instrucciones\s+del\s+sistema)", re.IGNORECASE),
         re.compile(r"(exfiltrar?|volcar|dump)\s+(base\s+de\s+datos|contraseñas|api\s*keys?)", re.IGNORECASE),

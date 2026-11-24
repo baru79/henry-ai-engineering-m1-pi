@@ -96,7 +96,7 @@ class TriageService:
                 metric = MetricsLogger.log_request(
                     query=sanitized_query,
                     provider=self.provider_name,
-                    model="cache-md5",
+                    model=self.model_name,
                     prompt_tokens=0,
                     completion_tokens=0,
                     latency_seconds=latency,

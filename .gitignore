@@ -19,3 +19,6 @@ data/cache.json
 # IDEs
 .vscode/
 .idea/
+
+# Material del enunciado (no forma parte del entregable)
+enunciado/

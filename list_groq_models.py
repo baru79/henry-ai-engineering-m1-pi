@@ -1,10 +1,32 @@
 import os
+import argparse
 import sys
 from pathlib import Path
-from dotenv import load_dotenv
+
+# ---- Argument parsing ---------------------------------------------------
+parser = argparse.ArgumentParser(description="List Groq models from your account")
+parser.add_argument("--env", type=str, default=".env", help="Path to the .env file (default: .env)")
+parser.add_argument("--model", type=str, help="Show details for a specific model ID")
+parser.add_argument("--json", action="store_true", help="Output the model list as JSON")
+parser.add_argument("-v", "--verbose", action="store_true", help="Enable verbose output")
+args = parser.parse_args()
+
+try:
+    from dotenv import load_dotenv
+except ImportError:
+    import sys
+    print("Error: python-dotenv no está instalado.")
+    sys.exit(1)
 
 ROOT_DIR = Path(__file__).resolve().parent
-load_dotenv(ROOT_DIR / ".env")
+import json
+
+# Load environment file (customizable via --env flag)
+load_dotenv(args.env)
+
+if args.verbose:
+    print(f"[VERBOSE] Using env file: {args.env}")
+
 
 try:
     from groq import Groq
