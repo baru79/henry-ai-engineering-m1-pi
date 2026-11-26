@@ -5,10 +5,14 @@ from src.llm.base import LLMProvider, LLMProviderError
 class OpenRouterProvider(LLMProvider):
     """
     Adapter para OpenRouter (acceso a modelos gratuitos Open Source vía API compatible con OpenAI).
-    Modelos gratuitos activos recomendados:
-    - 'openrouter/free' (auto-router que balancea automáticamente entre modelos gratuitos disponibles)
-    - 'nvidia/nemotron-3.5-lightning:free'
-    - 'google/gemma-4-31b-it:free'
+    Modelos gratuitos verificados recomendados:
+    - 'openrouter/free' (auto-router entre modelos gratuitos disponibles; opción por defecto)
+    - 'baidu/ernie-5.5-flash-preview:free'
+    - 'particle-ai/particle-1:free'
+    - 'nvidia/nemotron-3-ultra-550b-a55b:free'
+    - 'recursive/flint-v1.0:free'
+    - 'nvidia/nemotron-3.5-super-vl:free'
+    Nota: la disponibilidad y los límites de los modelos :free cambian con el tiempo.
     """
 
     def get_default_model(self) -> str:

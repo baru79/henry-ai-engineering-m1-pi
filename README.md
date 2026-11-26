@@ -113,7 +113,7 @@ PI/
     │   ├── base.py           # Abstracción base LLMProvider (ABC) y LLMResponse unificado
     │   ├── factory.py        # Patrón Factory para instanciación desacoplada
     │   ├── groq_provider.py  # Adaptador Groq Cloud (openai/gpt-oss-120b)
-    │   ├── gemini_provider.py# Adaptador Google AI Studio (gemini-3.8-flash + mapeo de nombres legados)
+    │   ├── gemini_provider.py# Adaptador Google AI Studio (modelo configurable; recomendado: gemini-3.1-flash-lite)
     │   └── openrouter_provider.py # Adaptador OpenRouter (openrouter/free)
     └── observability/
         ├── __init__.py
@@ -158,7 +158,7 @@ CACHE_ENABLED=true
 METRICS_FILE_PATH=data/metrics.jsonl
 ```
 
-> **Importante:** `LLM_MODEL` debe corresponder al `LLM_PROVIDER` elegido. Si cambiás de proveedor en `.env`, actualizá también el modelo (Groq: `openai/gpt-oss-120b`, Gemini: `gemini-3.8-flash`, OpenRouter: `openrouter/free`). También podés sobreescribir ambos por CLI con `--provider` y `--model`.
+> **Importante:** `LLM_MODEL` debe corresponder al `LLM_PROVIDER` elegido. Si cambiás de proveedor en `.env`, actualizá también el modelo (Groq: `openai/gpt-oss-120b`, Gemini: `gemini-3.1-flash-lite` o `gemini-3.5-flash-lite`, OpenRouter: `openrouter/free`). También podés sobreescribir ambos por CLI con `--provider` y `--model`.
 
 ---
 
@@ -358,7 +358,7 @@ $$\text{Costo (USD)} = \frac{(\text{prompt\_tokens} \times \text{tarifa\_input})
 *Tarifas de referencia:*
 * **Groq OpenAI GPT-OSS 120B:** \$0.15 / 1M input \| \$0.60 / 1M output
 * **Groq OpenAI GPT-OSS 20B:** \$0.05 / 1M input \| \$0.15 / 1M output
-* **Google Gemini 1.5 Flash:** \$0.075 / 1M input \| \$0.30 / 1M output
+* **Google Gemini 3.1 Flash-Lite (gratuito):** costo real en free tier \$0.00; `pricing.py` usa tarifa fallback de \$0.10 / 1M input \| \$0.30 / 1M output para la estimación.
 * **Caché Hit:** \$0.0000000 USD (0 tokens consumidos)
 
 ---
