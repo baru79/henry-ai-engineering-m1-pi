@@ -2,7 +2,6 @@
 
 > Documento de onboarding para Nubbix Triage AI.
 > Audiencia: personas que ven el repositorio por primera vez y necesitan entenderlo, ejecutarlo y extenderlo sin romper el contrato del producto.
-> Última actualización: 2026-11-28, sobre el commit `12de52b`.
 
 ---
 
@@ -21,33 +20,11 @@ La idea es que una persona nueva pueda responder estas preguntas en menos de una
 
 ---
 
-## 2. Modelo mental en 60 segundos
+## 2. Modelo mental
 
 Nubbix Triage AI es un **CLI síncrono** que procesa un ticket de soporte por ejecución. No es una API web ni un servicio con base de datos: es un MVP reproducible, pensado para demostrar el pipeline completo y para correr evaluaciones empíricas contra proveedores gratuitos.
 
-El pipeline es:
-
-```mermaid
-flowchart TD
-    A["Texto libre del ticket"] --> B["InputGuard<br/>valida entrada"]
-    B -->|"válida"| C["Cache MD5<br/>consulta normalizada"]
-    B -->|"ataque o inválida"| B1["Bloqueo seguro<br/>sin invocar LLM"]
-
-    C -->|"cache hit"| I["MetricsLogger<br/>data/metrics.jsonl"]
-    C -->|"cache miss"| D["PromptLoader<br/>carga YAML versionado"]
-
-    D --> E["LLMFactory<br/>elige proveedor"]
-    E --> F["LLMProvider<br/>SDK + tokens + latencia"]
-    F --> G["Pydantic<br/>valida contrato JSON"]
-
-    G -->|"válido"| H["OutputGuard<br/>detecta fugas"]
-    G -->|"inválido"| K["Retry con feedback correctivo<br/>máximo MAX_RETRIES"]
-    K --> F
-
-    B1 --> I
-    H --> I
-    I --> J["JSON por stdout<br/>métricas por stderr"]
-```
+El pipeline completo, con todos sus componentes, se describe en [Arquitectura del Sistema](README.md#-arquitectura-del-sistema) del README.
 
 La regla de diseño más importante es: **la lógica de negocio no conoce ningún SDK de LLM**. `TriageService` orquesta interfaces; los adaptadores concretos viven en `src/llm/`.
 
@@ -735,16 +712,16 @@ Contrato interno que devuelve cualquier proveedor:
 
 ## 8. Alternativas descartadas
 
-| Alternativa | Por qué no se usó |
-| --- | --- |
-| API con FastAPI | Agrega autenticación, despliegue y concurrencia que el MVP no necesita. |
-| LangChain o framework de agentes | Oscurece el control del prompt, los tokens y los errores. Los SDKs directos son más auditables. |
-| Base de datos para métricas | JSONL es suficiente para el volumen y la evidencia del challenge. |
-| Caché semántica con embeddings | Agrega complejidad, costo y un umbral difícil de calibrar; la caché exacta cubre el caso de consultas repetidas. |
-| pytest con mocks de LLM | No mide el comportamiento real del modelo; se prefirió una suite empírica end-to-end. |
-| Prompts hardcodeados | Impiden comparar versiones y auditar cambios con claridad. |
-| Reintentos para errores de API | Pueden multiplicar fallas de cuota y ocultar problemas de configuración. |
-| Streaming de respuestas | La CLI necesita el JSON completo para validar con Pydantic. |
+| Alternativa                      | Por qué no se usó                                                                                                |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| API con FastAPI                  | Agrega autenticación, despliegue y concurrencia que el MVP no necesita.                                          |
+| LangChain o framework de agentes | Oscurece el control del prompt, los tokens y los errores. Los SDKs directos son más auditables.                  |
+| Base de datos para métricas      | JSONL es suficiente para el volumen y la evidencia del challenge.                                                |
+| Caché semántica con embeddings   | Agrega complejidad, costo y un umbral difícil de calibrar; la caché exacta cubre el caso de consultas repetidas. |
+| pytest con mocks de LLM          | No mide el comportamiento real del modelo; se prefirió una suite empírica end-to-end.                            |
+| Prompts hardcodeados             | Impiden comparar versiones y auditar cambios con claridad.                                                       |
+| Reintentos para errores de API   | Pueden multiplicar fallas de cuota y ocultar problemas de configuración.                                         |
+| Streaming de respuestas          | La CLI necesita el JSON completo para validar con Pydantic.                                                      |
 
 ---
 
