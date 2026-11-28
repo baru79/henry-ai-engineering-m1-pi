@@ -23,6 +23,7 @@ El sistema clasifica consultas en texto libre, propone respuestas empáticas y c
 - [Observabilidad y Métricas de Costo](#-observabilidad-y-métricas-de-costo)
 - [Extra Credit: Caché Semántica/Exacta MD5](#-extra-credit-caché-md5)
 - [Checklist de Cumplimiento](#-checklist-de-cumplimiento)
+- [Guía Técnica y Decisiones de Arquitectura](ARCHITECTURE.md)
 
 ---
 
@@ -88,6 +89,7 @@ PI/
 ├── .gitignore                # Reglas estrictas para no commitear credenciales ni entornos
 ├── requirements.txt          # Dependencias fijadas (Pydantic v2, PyYAML, Groq, Google-GenAI, OpenAI)
 ├── README.md                 # Documentación exhaustiva y reproducible del proyecto
+├── ARCHITECTURE.md           # Guía técnica interna: archivos, decisiones y deuda técnica
 ├── data/
 │   ├── metrics.jsonl         # Log estructurado append-only de observabilidad
 │   └── cache.json            # Persistencia de respuestas cacheadas por Hash MD5
