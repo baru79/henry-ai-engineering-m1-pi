@@ -46,6 +46,7 @@ El tiempo promedio de primera respuesta se había elevado a 9 horas. Este MVP au
 El sistema implementa una arquitectura desacoplada basada en el principio **Open/Closed (SOLID)**:
 
 ```mermaid
+%%{init: {"themeVariables": {"edgeLabelBackground": "transparent"}}}%%
 flowchart TD
     A["Entrada del Usuario: CLI / Script"] --> B["1. Input Guardrail"]
 
