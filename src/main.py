@@ -19,7 +19,7 @@ from src.llm.base import LLMResponse, LLMProviderError
 from src.prompt_loader import PromptLoader
 from src.guardrails import InputGuard, OutputGuard
 from src.cache import response_cache
-from src.observability import MetricsLogger, PricingCalculator
+from src.observability import MetricsLogger
 
 
 class TriageService:

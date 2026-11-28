@@ -1,6 +1,6 @@
 from typing import Dict, Optional, Type
 from src.config import settings
-from src.llm.base import LLMProvider, LLMProviderError
+from src.llm.base import LLMProvider
 from src.llm.groq_provider import GroqProvider
 from src.llm.gemini_provider import GeminiProvider
 from src.llm.openrouter_provider import OpenRouterProvider

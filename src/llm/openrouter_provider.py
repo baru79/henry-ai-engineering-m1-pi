@@ -1,4 +1,3 @@
-from typing import Optional
 from src.llm.base import LLMProvider, LLMProviderError
 
 

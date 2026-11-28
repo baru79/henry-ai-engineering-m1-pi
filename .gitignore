@@ -20,5 +20,6 @@ data/cache.json
 .vscode/
 .idea/
 
-# Material del enunciado (no forma parte del entregable)
+# Material local / no publicado (utilidades auxiliares y enunciado)
+scripts_locales/
 enunciado/

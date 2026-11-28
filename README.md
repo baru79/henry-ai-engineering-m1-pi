@@ -83,10 +83,6 @@ PI/
 ├── .gitignore                # Reglas estrictas para no commitear credenciales ni entornos
 ├── requirements.txt          # Dependencias fijadas (Pydantic v2, PyYAML, Groq, Google-GenAI, OpenAI)
 ├── README.md                 # Documentación exhaustiva y reproducible del proyecto
-├── list_groq_models.py       # Utilidad: lista los modelos de texto disponibles en Groq
-├── list_gemini_models.py     # Utilidad: lista los modelos de texto disponibles en Gemini
-├── list_openrouter_models.py # Utilidad: lista los modelos gratuitos disponibles en OpenRouter
-├── test_all_models.py        # Utilidad: smoke test de la CLI contra todos los modelos configurados
 ├── data/
 │   ├── metrics.jsonl         # Log estructurado append-only de observabilidad
 │   └── cache.json            # Persistencia de respuestas cacheadas por Hash MD5

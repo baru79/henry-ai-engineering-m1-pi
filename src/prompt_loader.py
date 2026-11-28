@@ -1,4 +1,3 @@
-from pathlib import Path
 from typing import Optional, List
 import yaml
 from pydantic import BaseModel, Field
