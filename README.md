@@ -45,32 +45,37 @@ El tiempo promedio de primera respuesta se había elevado a 9 horas. Este MVP au
 
 El sistema implementa una arquitectura desacoplada basada en el principio **Open/Closed (SOLID)**:
 
-```
-[ Entrada del Usuario (CLI / Script) ]
-                   │
-                   ▼
-       [ 1. Input Guardrail ] ─────────► (Si detecta ataque / vacío) ──► [ Bloqueo Seguro (Costo $0, Latencia 0s) ]
-                   │
-                   ▼ (Válido)
-       [ 2. Caché MD5 ] ──────────────► (Si es repetido: Cache Hit) ───► [ Respuesta Inmediata (<1ms, Costo $0) ]
-                   │
-                   ▼ (Cache Miss)
-       [ 3. Prompt Loader ] ──────────► Carga dinámica YAML (v1_zero_shot / v2_few_shot)
-                   │
-                   ▼
-       [ 4. Multi-Provider LLM ] ─────► Groq (GPT-OSS) | Gemini (Flash) | OpenRouter (free)
-                   │
-                   ▼
-       [ 5. Pydantic Validator ] ─────► (Si falla JSON) ──► [ Retry Loop con Error Hint ] ──┐
-                   │ (Válido)                                                               │ (Reintenta)
-                   ▼                                                                        ▼
-       [ 6. Output Guardrail ] ───────► Detección de fugas de System Prompt o Credenciales
-                   │
-                   ▼
-       [ 7. Metrics Logger ] ─────────► Append-only a data/metrics.jsonl (Tokens, Latencia, Costo USD)
-                   │
-                   ▼
-       [ Salida JSON Estructurada por stdout ]
+```mermaid
+flowchart TD
+    A["Entrada del Usuario: CLI / Script"] --> B["1. Input Guardrail"]
+
+    B -->|"Detecta ataque o consulta vacía"| B1["Bloqueo Seguro<br/>Costo $0 - Latencia 0s"]
+    B -->|"Consulta válida"| C["2. Caché MD5 Context-Aware"]
+
+    C -->|"Cache Hit: Consulta repetida"| C1["Respuesta Inmediata<br/>Menor a 1 ms - Costo $0"]
+    C -->|"Cache Miss"| D["3. Prompt Loader"]
+
+    D -->|"Carga de plantilla YAML"| D1[("Prompts YAML:<br/>v1_zero_shot / v2_few_shot")]
+    D1 --> E["4. Multi-Provider LLM Factory"]
+
+    E -->|"Selección de Proveedor"| E1{"Proveedor Configurado"}
+    E1 -->|"Groq"| P1["Groq Cloud API<br/>openai/gpt-oss-120b"]
+    E1 -->|"Gemini"| P2["Google AI Studio<br/>gemini-3.1-flash-lite"]
+    E1 -->|"OpenRouter"| P3["OpenRouter API<br/>openrouter/free"]
+
+    P1 --> F["5. Pydantic Validator"]
+    P2 --> F
+    P3 --> F
+
+    F -->|"Salida JSON Inválida"| F1["Retry Loop con Error Hint<br/>Max Retries: 2"]
+    F1 --> E
+
+    F -->|"Salida JSON Válida"| G["6. Output Guardrail"]
+    G -->|"Detecta fuga de prompt / credenciales"| G1["Filtro / Censura de Seguridad"]
+    G -->|"Validado"| H["7. Metrics Logger"]
+
+    H -->|"Escritura Append-Only"| H1[("data/metrics.jsonl")]
+    H --> I["Salida JSON Estructurada<br/>stdout"]
 ```
 
 ---
